@@ -7,7 +7,7 @@
             </mat-form-field>
             <button class='btn-outline btn-inline' (click)="onSearch()" mat-stroked-button >Search</button>
             <span class="right-sided" *ngIf="totalCount > 1">Found <b>{{totalCount}}</b> results</span>
-            <span class="right-sided" *ngIf="totalCount === 1 || totalCount === 0">Found <b>{{totalCount}}</b> result</span>
+            <span class="right-sided" *ngIf="totalCount <= 1">Found <b>{{totalCount}}</b> result</span>
         </ng-container>
     </mat-card>
     <mat-card>
@@ -37,8 +37,8 @@
               <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
             </ng-container>
 
-            <!-- Details Column  column is defined as url because mat-table needs a column def name
-                for every column that must be visible-->
+            <!-- Details Column  column is defined as 'url' because mat-table needs a column def name
+                for every column that must be visible -->
             <ng-container matColumnDef="url">
                 <th width='15%' mat-header-cell *matHeaderCellDef>
                     <mat-icon aria-hidden="false" aria-label="Description Icon">description</mat-icon>
@@ -52,7 +52,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </mat-card>
-    <mat-card>
+    <mat-card style="margin-top: 15px; margin-bottom: 15px;">
         <mat-paginator nextPageLabel='Next'
             previousPageLabel='Previous'
             [hidePageSize]='true'

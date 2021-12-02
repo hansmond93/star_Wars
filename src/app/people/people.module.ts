@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     PeopleComponent
   ],
   imports: [
+    NgxSpinnerModule,
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,

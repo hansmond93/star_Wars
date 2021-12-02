@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { IPeople } from '../shared/model/people';
 import { PeopleParams } from '../shared/model/peopleParams';
 import { PeopleService } from './people.service';
@@ -8,7 +9,7 @@ import { PeopleService } from './people.service';
   templateUrl: './people.component.html',
   styleUrls: ['./people.component.scss']
 })
-export class PeopleComponent implements OnInit {
+export class PeopleComponent implements OnInit, OnDestroy {
   @ViewChild('search', {static: false}) searchTerm: ElementRef;
 
   people: IPeople[];
@@ -20,7 +21,15 @@ export class PeopleComponent implements OnInit {
   constructor(private peopleService: PeopleService) { }
 
   ngOnInit(): void {
+    const pageNumber = localStorage.getItem('pageNumber');
+    if (pageNumber) {
+      this.peopleParams.pageNumber = +pageNumber;
+    }
     this.getPeople();
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('pageNumber');
   }
 
   getPeople(): void {
@@ -35,9 +44,9 @@ export class PeopleComponent implements OnInit {
   }
 
   onPageChanged(event: any): void {
-    console.log('EVENT', event);
-    if (this.peopleParams.pageNumber !== event.pageIndex) {
-      this.peopleParams.pageNumber = event.pageIndex;
+    if (this.peopleParams.pageNumber !== (event.pageIndex + 1)) {
+      this.peopleParams.pageNumber = (event.pageIndex + 1);
+      localStorage.setItem('pageNumber', this.peopleParams.pageNumber.toString());
       this.getPeople();
     }
   }
@@ -45,7 +54,6 @@ export class PeopleComponent implements OnInit {
   onSearch(): void {
     this.peopleParams.search = this.searchTerm.nativeElement.value;
     this.searchTerm.nativeElement.value = '';
-    console.log('search', this.peopleParams.search);
     this.peopleParams.pageNumber = 1;
     this.getPeople();
   }
