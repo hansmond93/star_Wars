@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+  }
+
+.custom.mat-card {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+  }
+
+.btn-outline {
+    border: solid 2px lightskyblue;
+}
+
+.btn-inline {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    bottom: 6.5px;
+}
+
+.right-sided {
+    float: right;
+    position: relative;
+    top: 25px;
+}

@@ -1,24 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {CdkColumnDef, CdkTableModule} from '@angular/cdk/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PeopleComponent } from './people/people.component';
+import { PeopleModule } from './people/people.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PeopleComponent
   ],
   imports: [
-    HttpClientModule,
+    PeopleModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CdkColumnDef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

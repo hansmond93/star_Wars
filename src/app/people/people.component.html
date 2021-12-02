@@ -1,1 +1,65 @@
-<p *ngFor="let person of people">{{person.name}}</p>
+<div class="container">
+    <mat-card class="custom">
+        <ng-container class="form-inline">
+            <mat-form-field style='padding-left: 10px;padding-right: 10px;' appearance="fill">
+                <mat-label>enter name</mat-label>
+                <input (keyup.enter)="onSearch()" #search matInput>
+            </mat-form-field>
+            <button class='btn-outline btn-inline' (click)="onSearch()" mat-stroked-button >Search</button>
+            <span class="right-sided" *ngIf="totalCount > 1">Found <b>{{totalCount}}</b> results</span>
+            <span class="right-sided" *ngIf="totalCount === 1 || totalCount === 0">Found <b>{{totalCount}}</b> result</span>
+        </ng-container>
+    </mat-card>
+    <mat-card>
+        <table mat-table [dataSource]="people" class="mat-elevation-z8">
+
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+              <th width='10%' mat-header-cell *matHeaderCellDef> Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th  width='40%' mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <!-- Birth Year Column -->
+            <ng-container matColumnDef="birth_year">
+              <th width='20%' mat-header-cell *matHeaderCellDef> Birth Year </th>
+              <td mat-cell *matCellDef="let element"> {{element.birth_year}} </td>
+            </ng-container>
+          
+            <!-- Gender Column -->
+            <ng-container matColumnDef="gender">
+              <th width='15%' mat-header-cell *matHeaderCellDef> Gender </th>
+              <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+            </ng-container>
+
+            <!-- Details Column  column is defined as url because mat-table needs a column def name
+                for every column that must be visible-->
+            <ng-container matColumnDef="url">
+                <th width='15%' mat-header-cell *matHeaderCellDef>
+                    <mat-icon aria-hidden="false" aria-label="Description Icon">description</mat-icon>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <button class='btn-outline' mat-stroked-button >Details</button>
+                </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card>
+    <mat-card>
+        <mat-paginator nextPageLabel='Next'
+            previousPageLabel='Previous'
+            [hidePageSize]='true'
+            [pageSize]="10"
+            [length]="totalCount"
+            [pageIndex]="(peopleParams.pageNumber - 1)"
+            (page)='onPageChanged($event)'>
+        </mat-paginator>
+    </mat-card>
+</div>
