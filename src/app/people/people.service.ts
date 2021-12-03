@@ -42,7 +42,7 @@ export class PeopleService {
     const url = person.url;
     if (url && url !== '') {
       const words = url.split('/');
-      if (words.length >= 5) {
+      if (words && words.length >= 5) {
         person.id = words[5]; // 5th index holds the id after splitting
       }
     }
