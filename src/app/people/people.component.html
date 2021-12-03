@@ -44,7 +44,7 @@
                     <mat-icon aria-hidden="false" aria-label="Description Icon">description</mat-icon>
                 </th>
                 <td mat-cell *matCellDef="let element">
-                    <button class='btn-outline' mat-stroked-button >Details</button>
+                    <button class='btn-outline' (click)='viewDetails(element)' mat-stroked-button >Details</button>
                 </td>
             </ng-container>
           
@@ -62,4 +62,7 @@
             (page)='onPageChanged($event)'>
         </mat-paginator>
     </mat-card>
+
+    <!-- modal -->
+    <!-- <app-people-details></app-people-details> -->
 </div>

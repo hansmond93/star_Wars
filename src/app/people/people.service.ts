@@ -25,7 +25,7 @@ export class PeopleService {
     }
 
     params = params.append('page', peopleParams.pageNumber.toString());
-    console.log(params);
+    // console.log(params);
     return this.http.get<IPagination>(this.baseUrl + 'people', {observe: 'response', params})
     .pipe(
       map(response => {

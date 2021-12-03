@@ -12,10 +12,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError(error => {
                 if (error) {
-                    if (error.status >= 500) {
-                        const navigationExtras: NavigationExtras = {state: {error: error.error}};
-                        this.router.navigateByUrl('/server-error', navigationExtras);
-                    }
+                    //console.log('error navigated', error);
+                    const navigationExtras: NavigationExtras = {state: {error: error.message}};
+                    this.router.navigateByUrl('/server-error', navigationExtras);
                 }
                 return throwError(error);
             })

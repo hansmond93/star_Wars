@@ -10,13 +10,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PeopleDetailsComponent } from './people-details/people-details.component';
 
 
 @NgModule({
   declarations: [
-    PeopleComponent
+    PeopleComponent,
+    PeopleDetailsComponent
   ],
   imports: [
+    MatDialogModule,
     NgxSpinnerModule,
     MatPaginatorModule,
     MatInputModule,

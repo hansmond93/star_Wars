@@ -12,8 +12,7 @@ export class ServererrorComponent implements OnInit {
 
     // this navigationExtras are only available in the Contructor
     const navigation = this.router.getCurrentNavigation();
-    this.error = navigation && navigation.extras && navigation.extras.state &&
-    navigation.extras.state.error;
+    this.error = navigation && navigation.extras && navigation.extras.state && navigation.extras.state.error;
 
    }
 

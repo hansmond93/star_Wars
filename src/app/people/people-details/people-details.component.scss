@@ -1,0 +1,42 @@
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+div.form-inline input {
+    width: 45%;
+    height: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-inline label {
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.form-inline label:first-child {
+    position: relative;
+    left: 10px;
+}
+
+.right {
+    position: relative;
+    right: 30px;
+    display:flex; 
+    justify-content:flex-end; 
+    width:100%; 
+    padding:0;
+  }
+
+div.right button {
+    font-size: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    border: solid 2px orangered;
+}

@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { IPeople } from '../shared/model/people';
 import { PeopleParams } from '../shared/model/peopleParams';
 import { PeopleService } from './people.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { PeopleDetailsComponent } from './people-details/people-details.component';
 
 @Component({
   selector: 'app-people',
@@ -18,7 +19,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'name', 'birth_year', 'gender', 'url'];
 
-  constructor(private peopleService: PeopleService) { }
+  constructor(private peopleService: PeopleService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     const pageNumber = localStorage.getItem('pageNumber');
@@ -37,9 +38,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
     this.peopleService.getPeople(this.peopleParams).subscribe(p => {
       this.people = p.results;
       this.totalCount = p.count;
-      console.log(this.people);
-      console.log(this.totalCount);
-      console.log(this.peopleParams.pageNumber);
     });
   }
 
@@ -56,6 +54,16 @@ export class PeopleComponent implements OnInit, OnDestroy {
     this.searchTerm.nativeElement.value = '';
     this.peopleParams.pageNumber = 1;
     this.getPeople();
+  }
+
+  viewDetails(person): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '800px';
+    dialogConfig.height = '500px';
+    dialogConfig.maxHeight = '500px';
+    dialogConfig.maxWidth = '800px';
+    dialogConfig.data = person;
+    this.dialog.open(PeopleDetailsComponent, dialogConfig);
   }
 
 }

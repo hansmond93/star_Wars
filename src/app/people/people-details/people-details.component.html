@@ -1,0 +1,36 @@
+<h1 mat-dialog-title style="text-align: center;">Details</h1>
+<div mat-dialog-content >
+    <div style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="form-inline">
+            <label>Name</label>
+            <label>Height</label>
+        </div>
+        <div class="form-inline">
+            <input [value]="person.name" [disabled]="true">
+            <input [value]="person.height" [disabled]="true">
+        </div> 
+    </div>
+    <div style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="form-inline">
+            <label>Birth Year</label>
+            <label>Mass</label>
+        </div>
+        <div class="form-inline">
+            <input [value]="person.birth_year" [disabled]="true">
+            <input [value]="person.mass" [disabled]="true">
+        </div> 
+    </div>
+    <div style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="form-inline">
+            <label>Gender</label>
+            <label>Eye Color</label>
+        </div>
+        <div class="form-inline">
+            <input [value]="person.gender" [disabled]="true">
+            <input [value]="person.eye_color" [disabled]="true">
+        </div> 
+    </div>
+</div>
+<div mat-dialog-actions class="right">
+  <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
+</div>
